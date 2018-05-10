@@ -8,16 +8,15 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.log4j.BasicConfigurator;
 
+/*
+ * 카프카 프로듀서의 3가지 전송 방법
+ * 
+ * */
 public class ProducerSample {
 
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
 
-		ProducerSample sample = new ProducerSample();
-		sample.startProducerBySync();
-	}
-
-	public void startProducer() {
 		Properties props = new Properties();
 		props.put("bootstrap.servers", "203.251.177.28:9092");
 		props.put("acks", "all");
@@ -28,7 +27,14 @@ public class ProducerSample {
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
+		ProducerSample sample = new ProducerSample();
+		sample.startProducerBySync(props);
+	}
+
+	public void startProducer(Properties props) {
+
 		Producer<String, String> producer = new KafkaProducer<String, String>(props);
+
 		try {
 			producer.send(new ProducerRecord<String, String>("peter-topic",
 					"Apache Kafka is a distributed streaming platform"));
@@ -40,18 +46,10 @@ public class ProducerSample {
 		}
 	}
 
-	public void startProducerBySync() {
-		Properties props = new Properties();
-		props.put("bootstrap.servers", "203.251.177.28:9092");
-		props.put("acks", "all");
-		props.put("retries", 0);
-		props.put("batch.size", 16384);
-		props.put("linger.ms", 1);
-		props.put("buffer.memory", 33554432);
-		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+	public void startProducerBySync(Properties props) {
 
 		Producer<String, String> producer = new KafkaProducer<String, String>(props);
+
 		try {
 			RecordMetadata metadata = producer.send(new ProducerRecord<String, String>("peter-topic",
 					"Apache Kafka is a distributed streaming platform")).get();
@@ -67,18 +65,10 @@ public class ProducerSample {
 		}
 	}
 
-	public void startProducerByAsync() {
-		Properties props = new Properties();
-		props.put("bootstrap.servers", "203.251.177.28:9092");
-		props.put("acks", "all");
-		props.put("retries", 0);
-		props.put("batch.size", 16384);
-		props.put("linger.ms", 1);
-		props.put("buffer.memory", 33554432);
-		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+	public void startProducerByAsync(Properties props) {
 
 		Producer<String, String> producer = new KafkaProducer<String, String>(props);
+
 		try {
 			producer.send(new ProducerRecord<String, String>("peter-topic",
 					"Apache Kafka is a distributed streaming platform"), new ProducerCallBack());
