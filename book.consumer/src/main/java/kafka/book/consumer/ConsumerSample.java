@@ -6,11 +6,13 @@ import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.log4j.BasicConfigurator;
 
 public class ConsumerSample {
 
 	public static void main(String[] args) {
-
+		BasicConfigurator.configure();
+		
 		Properties props = new Properties();
 		props.put("bootstrap.servers", "203.251.177.28:9092");
 		props.put("group.id", "peter-consumer");
