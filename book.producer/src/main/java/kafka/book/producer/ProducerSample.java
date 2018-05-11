@@ -9,11 +9,17 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.log4j.BasicConfigurator;
 
 /*
- * 카프카 프로듀서의 3가지 전송 방법
+ * - 카프카 프로듀서의 3가지 전송 방법
  * 
  * 1. 그냥 보내기
  * 2. 동기
  * 3. 비동기
+ * 
+ * 
+ * - acks(승인, 확인)
+ * 0 => 손실 : 상, 전송 속도: 상
+ * 1 => 손실 : 중, 전송 속도: 중
+ * all or -1 => 손실 : 하, 전송 속도 : 하
  * 
  * */
 public class ProducerSample {
