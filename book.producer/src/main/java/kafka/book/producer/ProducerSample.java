@@ -11,6 +11,10 @@ import org.apache.log4j.BasicConfigurator;
 /*
  * 카프카 프로듀서의 3가지 전송 방법
  * 
+ * 1. 그냥 보내기
+ * 2. 동기
+ * 3. 비동기
+ * 
  * */
 public class ProducerSample {
 
