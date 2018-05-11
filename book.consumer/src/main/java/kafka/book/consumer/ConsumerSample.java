@@ -11,7 +11,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.apache.log4j.BasicConfigurator;
 
 /**
- * - 컨슈머 토픽 파티션 (1) : 컨슈머 (1) 로 연결된다.
+ * - 토픽 파티션 (1) : 컨슈머 (1) 로 연결된다.
  * 
  * - 컨슈머 그룹 컨슈머 그룹 내의 컨슈머들은 메시지를 가져오고 있는 토픽의 파티션에 대해 소유권을 공유한다.
  * 
